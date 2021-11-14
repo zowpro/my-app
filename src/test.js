@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
-import Dataload from './dataload.js'
 
-export default class app extends Component {
+export default class test extends Component {
+    constructor() {
+        
+    }
     render() {
         return (
             <div>
-                <Dataload/>
+                Hello
             </div>
         )
     }
