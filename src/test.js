@@ -7,7 +7,7 @@ export default class test extends Component {
     render() {
         return (
             <div>
-                Hello
+                Hello, It's me !
             </div>
         )
     }
