@@ -4,8 +4,8 @@ This project is a test for Tech Lead Job for Cureety Company.
 
 ## Structure of reflexion
 
-1- Verify LocalStorage isn't empty + Recognize compressed/decompressed Data from LocalStorage.
-2- Load Data from LocalStorage and display it while load Data from server.
+1- Verify LocalStorage isn't empty + Recognize compressed/decompressed Data from LocalStorage.<br/>
+2- Load Data from LocalStorage and display it while load Data from server.<br/>
 3- Fetch Data loaded from LocalStorage and store it in a Global Redux Store.
 4- When the Data is fully loaded from server, store it in Global Redux, compress it and save it in LocalStorage.
 5- If LocalStorage is out of space, delete first big size item comparing to new item and store it.
