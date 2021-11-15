@@ -1,26 +1,49 @@
 const InitialState = {
-    data : "test",
-    filter : "desc"
+    data : [                
+        {
+            "name":"Paul",
+            "last_name":"Doe",
+            "age":"45",
+            "cancer_origin":"a",
+        },
+        {
+            "name":"Alex",
+            "last_name":"Brown",
+            "age":"64",
+            "cancer_origin":"b",
+        },
+        {
+            "name":"Oliver",
+            "last_name":"Black",
+            "age":"60",
+            "cancer_origin":"c",
+        }
+   ],
+    filter : "asc",
 }
 
 const reducer = (state = InitialState, action) => {
-    console.log("reducer", state.data, action.data);
     const newstate = (state);
-    switch (action.type) {
-        case "Update":
-            newstate.data = action.data;
-            return newstate;
-        case "Filter": {
-            if(state.filter === "desc") {
-                return state.data = action.data.sort((a, b) => (a.cancer_origin > b.cancer_origin) ? 1 : -1);
-            } else {
-                
-                return state.data = [];
-            }
+    console.log("reducer", action.data, state.filter, action.type);
+    
+    if(action.type === "Update") {
+        newstate.data = action.data;
+        return newstate;
+    } else if(action.type === "Filter") {
+        if(state.filter == "desc") {
+            newstate.data = state.data.sort((a, b) => (a.cancer_origin > b.cancer_origin) ? 1 : -1);
+            newstate.filter = "asc";
+            return newstate
+        } else {
+            newstate.data = state.data.sort((a, b) => (a.cancer_origin < b.cancer_origin) ? 1 : -1);
+            newstate.filter = "desc";
+            return newstate
         }
-        default:
-            return state.data = [];
+    } else {
+        return newstate
     }
+
+
 }
 
 export default reducer;

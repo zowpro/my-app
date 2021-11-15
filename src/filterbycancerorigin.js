@@ -1,6 +1,7 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import {connect} from 'react-redux';
 
-export default class filteFirbycancerorigin extends Component {
+class filteFirbycancerorigin extends Component {
     render() {
         return (
             <thead>
@@ -8,9 +9,26 @@ export default class filteFirbycancerorigin extends Component {
                     <th>Name</th>
                     <th>Last Name</th>
                     <th>Age</th>
-                    <th>Cancer Origin</th>
+                    <th onClick={()=>{ this.props.FilterByCancerOrig();}}>Cancer Origin <small>(Filter asc/desc)</small></th>
                 </tr>
             </thead>
         )
     }
 }
+
+
+const mapStateToProps = (state) => {
+    return{
+        data: state.data,
+    };
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return{ 
+        StoreData: (dataprops) => {dispatch({type: 'Update', data: dataprops}) },
+        FilterByCancerOrig: () => {dispatch({type: 'Filter'});  },
+        //CompressData
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(filteFirbycancerorigin);

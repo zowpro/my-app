@@ -2,67 +2,46 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import PatientList from './patientlist.js';
 import FilterByCancerOrigin from './filterbycancerorigin.js';
+import './index.css';
 import LZUTF8 from 'lzutf8';
 
 class dataload extends Component {
-    constructor(props) {
-        super(props);
-        
-        this.state = {
-          data: [                
-                    {
-                        "name":"Paul",
-                        "last_name":"Doe",
-                        "age":"45",
-                        "cancer_origin":"a",
-                    },
-                    {
-                        "name":"Alex",
-                        "last_name":"Brown",
-                        "age":"64",
-                        "cancer_origin":"b",
-                    },
-                    {
-                        "name":"Oliver",
-                        "last_name":"Black",
-                        "age":"60",
-                        "cancer_origin":"c",
-                    }
-               ]
-        };
-    }
-
+    
     componentWillMount() {
-        var data = LZUTF8.compress(JSON.stringify(this.state.data));
-        console.log(data, JSON.parse(LZUTF8.decompress(data)));
-        /*var data = localStorage.getItem('DataPatients');
-        console.log("WillMount", data);
+        //Get Data From LocalStorage
+        var data = localStorage.getItem('DataPatients');
+        //Verify if LocalStorage isn't empty
         if(data != null) {
-            console.log("WillMountIf",data);
-            //this.props.StoreData(data);
-        }*/
+            //Decrompress Data
+            var decompressdata = LZUTF8.decompress(data); 
+            //Store Data in Redux Store
+            this.props.StoreData(decompressdata);
+        }
     }
 
-    componentDidMount() { console.log("DidMount")
-        /*fetch('http://localhost:3001/api/v1/')
+    componentDidMount() { 
+        fetch('http://localhost:3001/api/v1/')
           .then(response => response.json())
-          .then(data => this.setState({ data }));
-          console.log("DidMount", data);
-          this.props.StoreData(data);
-          localStorage.setItem('DataPatients', this.state.data);*/
+          .then(data => {
+                //Store Data in Redux Store
+                this.props.StoreData(data);
+                //Compress Data and Store it in LocalStorage
+                var datacompress = LZUTF8.compress(JSON.stringify(this.props.data))
+                localStorage.setItem('DataPatients', datacompress);
+          });
     }
 
     render() {
-        console.log("Render", this.props.data)
-        return( <div className="App">
+        return( <div className="App" onClick={()=>{ this.forceUpdate();}}>
                     <h1>List of Patients</h1>
-                    <table>
-                        <FilterByCancerOrigin onClick={this.props.FilterByCancerOrig} />
+                    
+                    <table id="patients">
+                        <FilterByCancerOrigin />
                         <tbody>
-                        {this.state.data.map((item, i) => (
+                        {this.props.data.map((item, i) => (
                             <PatientList data={item} key={i}/>
                         ))}
-                        </tbody>
+                    </tbody>
                     </table>
                 </div>);
     }
@@ -77,8 +56,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return{ 
         StoreData: (dataprops) => {dispatch({type: 'Update', data: dataprops}) },
-        FilterByCancerOrig: () => {dispatch({type: 'Filter'}) },
-        //CompressData
+        FilterByCancerOrig: () => {dispatch({type: 'Filter'});  },
     };
 };
 
