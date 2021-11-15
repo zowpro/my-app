@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
+import PatientList from './patientlist.js';
+import FilterByCancerOrigin from './filterbycancerorigin.js';
 import LZUTF8 from 'lzutf8';
 
 class dataload extends Component {
@@ -54,23 +56,14 @@ class dataload extends Component {
         console.log("Render", this.props.data)
         return( <div className="App">
                     <h1>List of Patients</h1>
-                    {this.props.data}
-                    <tbody>
-                        <tr>
-                            <th>Name</th>
-                            <th>Last Name</th>
-                            <th>Age</th>
-                            <th>Cancer Origin</th>
-                        </tr>
+                    <table>
+                        <FilterByCancerOrigin onClick={this.props.FilterByCancerOrig} />
+                        <tbody>
                         {this.state.data.map((item, i) => (
-                            <tr key={i}>
-                            <td>{item.name}</td>
-                            <td>{item.last_name}</td>
-                            <td>{item.age}</td>
-                            <td>{item.cancer_origin}</td>
-                            </tr>
+                            <PatientList data={item} key={i}/>
                         ))}
-                    </tbody>
+                        </tbody>
+                    </table>
                 </div>);
     }
 }
@@ -84,6 +77,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return{ 
         StoreData: (dataprops) => {dispatch({type: 'Update', data: dataprops}) },
+        FilterByCancerOrig: () => {dispatch({type: 'Filter'}) },
         //CompressData
     };
 };
