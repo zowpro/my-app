@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 
-class filteFirbycancerorigin extends Component {
+class filterbycancerorigin extends Component {
     render() {
         return (
             <thead>
@@ -31,4 +31,4 @@ const mapDispatchToProps = (dispatch) => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(filteFirbycancerorigin);
+export default connect(mapStateToProps, mapDispatchToProps)(filterbycancerorigin);
