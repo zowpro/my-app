@@ -2,40 +2,43 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import './index.css';
 import Table from './table';
-import LZUTF8 from 'lzutf8';
+import LZString from 'lzutf8';
 
 class dataload extends Component {
     
     componentWillMount() {
-        /*//Get Data From LocalStorage
+        //Get Data From LocalStorage
         var data = localStorage.getItem('DataPatients');
         //Verify if LocalStorage isn't empty
         if(data != null) {
             //Decrompress Data
-            var decompressdata = LZUTF8.decompress(data); 
+            var decompressed = LZString.decompress(data);
+            var stringdecompressed = JSON.parse(decompressed)
             //Store Data in Redux Store
-            this.props.StoreData(decompressdata);
-        }*/
+            this.props.StoreData(stringdecompressed);
+        }
     }
 
-    componentDidMount() { 
-        /*fetch('http://localhost:3001/api/v1/')
-          .then(response => response.json())
-          .then(data => {
+    componentDidMount() {
+        // Getting from server our Data 
+        fetch('http://localhost:3001/api/v1/')
+            .then(response => response.json())
+            .then(data => {
                 //Store Data in Redux Store
                 this.props.StoreData(data);
                 //Compress Data and Store it in LocalStorage
-                var datacompress = LZUTF8.compress(JSON.stringify(this.props.data))
-                localStorage.setItem('DataPatients', datacompress);
-          })
-          .catch(error => {
+                var string = JSON.stringify(data);
+                var compressed = LZString.compress(string);
+                localStorage.setItem('DataPatients', compressed);
+            })
+            .catch(error => {
               alert("Error of loading from server !")
-          });*/
+            });
     }
 
     render() {
         return( <div className="App">
-                    <h1>List of Patients</h1>                
+                    <h1>Table of List</h1>                
                     <Table data={this.props.data}/>
                 </div>);
     }
