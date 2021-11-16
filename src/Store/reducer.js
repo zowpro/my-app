@@ -31,12 +31,14 @@ const reducer = (state = InitialState, action) => {
         return newstate;
     } else if(action.type === "Filter") {
         if(state.filter == "desc") {
-            newstate.data = state.data.sort((a, b) => (a.cancer_origin > b.cancer_origin) ? 1 : -1);
+            newstate.data = state.data.sort((a, b) => (a[action.key] > b[action.key]) ? 1 : -1);
             newstate.filter = "asc";
+            console.log(newstate.data)
             return newstate
         } else {
-            newstate.data = state.data.sort((a, b) => (a.cancer_origin < b.cancer_origin) ? 1 : -1);
+            newstate.data = state.data.sort((a, b) => (a[action.key] < b[action.key]) ? 1 : -1);
             newstate.filter = "desc";
+            console.log(newstate.data)
             return newstate
         }
     } else {
