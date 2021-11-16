@@ -12,7 +12,7 @@ This project is a test for Tech Lead Job for Cureety Company.
 
 ## Components hierarchy
 
-Index.js    ====>    App(App.js)    ======>    dataload(dataload.js)    ======>    patientList(patientlist.js)    &&    filterbycancerorigin(filterbycancerorigin.js)
+Index.js    ====>    App(App.js)    ======>    dataload(dataload.js)    ======>    Table(table.js) 
 <br/>
 
 Store ===> reducer.js
@@ -20,14 +20,16 @@ Store ===> reducer.js
 
 ## Difficulities 
 
-1- Compression/Decompression Data + Comparing size.<br/>
-2- Some new notions and methods of ES6 and Redux.<br/>
-3- Git & React software problems.<br/>
+1- Recognizing Compression/Decompression Data.<br/>
+2- Verifying LocalStorage Size and deleting & deleting first item(I need more time to do it).<br/>
+3- Some new notions and methods of ES6 and Redux.<br/>
+4- Git & React software problems.<br/>
 
 ## Things to improve 
 
 1- Better code in Redux and ES6 <br/>
 2- Better incremental commits in Git.<br/>
+3- Better use of LocalStorage and Data Compression.<br/>
 
 
 ### Notes
