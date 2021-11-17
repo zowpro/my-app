@@ -27,7 +27,7 @@ const Hook = () => {
         //Verify if LocalStorage isn't empty
         if(dataLS != null) {
             //Decrompress Data
-            /*var decompressed = LZString.decompress(data);
+            /*var decompressed = LZString.decompress(dataLS);
             var stringdecompressed = JSON.parse(decompressed)*/
             //Store Data in Redux Store
             dispatch({type: 'Update', data: JSON.parse(dataLS)})
