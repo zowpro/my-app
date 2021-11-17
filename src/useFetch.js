@@ -1,14 +1,19 @@
-import React, {useEffect, useState} from 'react'
+import {useEffect, useState, useCallback} from 'react'
 
-function useFetch(url) {
+const useFetch = () => { 
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
-    useEffect((url) => {
+    const doFetch = useCallback((options = {}) => {
         setLoading(true);
-        
-        fetch(url)
+    }, []);
+
+    useEffect(() => {
+        if(!loading) {
+            return;
+        }
+        fetch("http://localhost:3004/posts")
         .then((res) => res.json())
         .then(data => {
             setData(data);
@@ -17,8 +22,8 @@ function useFetch(url) {
         }).finally(() => {
             setLoading(false)
         });
-    }, [url]);
-    return {data, loading, error};
+    }, [loading]);
+    return [{ data, loading, error }, doFetch];
 }
 
 export default useFetch

@@ -1,0 +1,62 @@
+{
+  "posts": [
+		{   "name":"Paul",
+            "last_name":"Doe",
+            "age":"45",
+            "cancer_origin":"a"
+        },
+        {
+            "name":"Alex",
+            "last_name":"Brown",
+            "age":"64",
+            "cancer_origin":"b"
+        },
+        {
+            "name":"Oliver",
+            "last_name":"Black",
+            "age":"60",
+            "cancer_origin":"c"
+        },
+		{   "name":"Alec",
+            "last_name":"AA",
+            "age":"44",
+            "cancer_origin":"d"
+        },
+        {
+            "name":"Ali",
+            "last_name":"BR",
+            "age":"74",
+            "cancer_origin":"e"
+        },
+        {
+            "name":"Alain",
+            "last_name":"Turing",
+            "age":"65",
+            "cancer_origin":"f"
+        },
+		{   "name":"Sol",
+            "last_name":"Dick",
+            "age":"47",
+            "cancer_origin":"g"
+        },
+        {
+            "name":"Do",
+            "last_name":"Ré",
+            "age":"61",
+            "cancer_origin":"h"
+        },
+        {
+            "name":"Fa",
+            "last_name":"Sol",
+            "age":"62",
+            "cancer_origin":"i"
+        }
+  ],
+  "posts1": [
+    { "id": 0, "title": "json-server", "author": "typicode" },{ "id": 1, "title": "jsonf-server", "author": "tyfpicode" },{ "id": 2, "title": "jsonf-server", "author": "tyfpicode" }
+  ],
+  "comments": [
+    { "id": 1, "body": "some comment", "postId": 1 }
+  ],
+  "profile": { "name": "typicode" }
+}

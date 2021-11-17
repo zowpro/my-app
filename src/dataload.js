@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import './index.css';
-import Table from './table';
-import LZString from 'lzutf8';
+import Hook from './hook.js';
 
 class dataload extends Component {
     
     componentWillMount() {
-        //Get Data From LocalStorage
+        /*//Get Data From LocalStorage
         var data = localStorage.getItem('DataPatients');
         //Verify if LocalStorage isn't empty
         if(data != null) {
@@ -16,11 +15,11 @@ class dataload extends Component {
             var stringdecompressed = JSON.parse(decompressed)
             //Store Data in Redux Store
             this.props.StoreData(stringdecompressed);
-        }
+        }*/
     }
 
     componentDidMount() {
-        // Getting from server our Data 
+        /*// Getting from server our Data 
         fetch('http://localhost:3001/api/v1/')
             .then(response => response.json())
             .then(data => {
@@ -33,28 +32,15 @@ class dataload extends Component {
             })
             .catch(error => {
               alert("Error of loading from server !")
-            });
+            });*/
     }
 
     render() {
-        return( <div className="App">
-                    <h1>Table of List</h1>                
-                    <Table data={this.props.data}/>
+        return( <div className="App">                            
+                    <Hook />
                 </div>);
     }
 }
 
-const mapStateToProps = (state) => {
-    return{
-        data: state.data,
-    };
-};
 
-const mapDispatchToProps = (dispatch) => {
-    return{ 
-        StoreData: (dataprops) => {dispatch({type: 'Update', data: dataprops}) },
-        FilterByCancerOrig: () => {dispatch({type: 'Filter'});  },
-    };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(dataload);
+export default dataload;

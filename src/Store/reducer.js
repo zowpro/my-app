@@ -5,7 +5,6 @@ const InitialState = {
 
 const reducer = (state = InitialState, action) => {
     const newstate = (state);
-    
 
     if(action.type === "Update") { // Updating Data of Reducer from server 
         newstate.data = action.data;
@@ -14,12 +13,10 @@ const reducer = (state = InitialState, action) => {
         if(state.filter == "desc") { //Filter asc
             newstate.data = state.data.sort((a, b) => (a[action.key] > b[action.key]) ? 1 : -1);
             newstate.filter = "asc";
-            console.log(newstate.data)
             return newstate
         } else { //Filter desc
             newstate.data = state.data.sort((a, b) => (a[action.key] < b[action.key]) ? 1 : -1);
             newstate.filter = "desc";
-            console.log(newstate.data)
             return newstate
         }
     } else {
